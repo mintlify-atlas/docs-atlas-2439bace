@@ -32,7 +32,7 @@ The Z linear rails are upgraded from MGN9 to **MGN12** to match the increased st
 | Attribute | Stock Voron 2.4 | Voron Tower |
 |---|---|---|
 | Rail type | MGN9H | MGN12H |
-| Qty | 2 | 2 |
+| Qty | 4 | 4 |
 | Load rating | Lower | Higher |
 | Carriage width | 9mm | 12mm |
 
@@ -44,17 +44,17 @@ The Z linear rails are upgraded from MGN9 to **MGN12** to match the increased st
 
 The stock Voron 2.4 uses three separate printed parts to form the Z bearing/carriage assembly. Voron Tower replaces all three with a single part: **`z_bearing_block_v8`**.
 
-<Columns cols={2}>
+<CardGroup cols={2}>
   <Card title="Stock Voron 2.4 (3 parts)" icon="layer-group">
-    - `z_bearing_block_upper`
-    - `z_bearing_block_lower`
-    - `z_belt_retainer`
+    - `z_bearing_block` (main body)
+    - `z_bearing_block_top`
+    - `z_bearing_block_bottom`
   </Card>
   <Card title="Voron Tower (1 part)" icon="cube">
     - `z_bearing_block_v8` (unified)
     - `z_belt_clamp` (belt retention)
   </Card>
-</Columns>
+</CardGroup>
 
 The consolidated block reduces assembly steps, eliminates inter-part alignment issues, and provides a more rigid mounting surface for the MGN12 carriage.
 

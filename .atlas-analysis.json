@@ -1,0 +1,61 @@
+{
+  "projectType": "general",
+  "projectName": "Voron Tower",
+  "projectDescription": "A fully parametric Voron 2.4 3D printer modification using 4040 aluminum extrusion frames, with optional enclosure box and adjustable feet.",
+  "theme": "aspen",
+  "primaryColor": "#ee6d2d",
+  "lightColor": "#36ab56",
+  "darkColor": "#73a2f0",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": ["introduction", "quickstart"]
+          },
+          {
+            "group": "Design & Parameters",
+            "pages": ["design/overview", "design/parameters", "design/frame"]
+          },
+          {
+            "group": "Printed Parts",
+            "pages": ["parts/overview", "parts/z-drive", "parts/z-idler", "parts/z-bearing", "parts/ab-drive", "parts/door-clips", "parts/panel-clips", "parts/z-chain-mount"]
+          },
+          {
+            "group": "Build Guide",
+            "pages": ["build/hardware-list", "build/assembly", "build/modifications"]
+          },
+          {
+            "group": "FAQ",
+            "pages": ["faq"]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Fully parametric Fusion 360 design for custom build volumes",
+    "4040 aluminum extrusion frame (compatible with series 10)",
+    "MGN12 rail upgrade on Z axis (vs stock MGN9)",
+    "350x350 and 500x500 build plate support",
+    "Optional enclosure box and adjustable feet",
+    "Modified Z belt drive, Z idler, Z bearing block for 4040 frame",
+    "Custom door clips, panel clips, and front idlers for 4040 extrusions",
+    "Complete hardware bill of materials for 350x350 build"
+  ],
+  "publicApiSurface": [
+    "STL: z_belt_driver_a/b (Z Belt Drive for 4040)",
+    "STL: z_idler_4040_1/2_a/b (Z Idler for 4040)",
+    "STL: z_bearing_block_v8, z_belt_clamp (Z Bearing Block)",
+    "STL: front_idler_top/bottom_a/b (Front Idler)",
+    "STL: a_drive_1/2, b_drive_1/2 (A/B Drive)",
+    "STL: door_handle_a/b, door_hinge, door_latch_magnet (Door Clips)",
+    "STL: corner_clip_4040, midspan_clip_4040 (Panel Clips)",
+    "STL: z_chain_lower_mount (Z Chain Lower Mount)",
+    "STL: belt_tensioner_a/b, z_motor_mount_a/b (Z Motor Mount)",
+    "Fusion 360 source files (.f3d/.f3z) for all components",
+    "Hardware List 350x350mm.xlsx (Bill of Materials)"
+  ]
+}

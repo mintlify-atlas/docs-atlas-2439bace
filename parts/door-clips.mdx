@@ -1,0 +1,68 @@
+---
+title: "Door clips"
+description: "Hinges, handles, and magnetic latch for the Voron Tower enclosure door, designed for 4040 extrusion."
+---
+
+The door system consists of four printed parts that together form a functional enclosure door: two hinges, two handles (left and right), and a magnetic latch. All four parts are designed specifically for **4040 extrusion** and will not fit a standard 2020 Voron 2.4 frame without modification.
+
+## Parts
+
+### Hinges
+
+| File | Qty | Description |
+|---|---|---|
+| `door_hinge_4040.stl` | 2 | Door hinge body, fits 4040 vertical extrusion |
+
+The door hinge captures a brass hinge insert and mounts to the vertical 4040 frame extrusion using T-nuts. Two hinges support the full door panel — one near the top and one near the bottom of the door opening. The hinge geometry matches the 40 mm face width of the 4040 profile, with the pivot point positioned so the door clears the frame corner when opening.
+
+<Tip>
+  Standard Voron 2.4 door hinges use a 3 mm hinge pin. The 4040 hinge uses the same pin — an M3 screw or a 3 mm steel rod works well.
+</Tip>
+
+### Handles
+
+| File | Qty | Description |
+|---|---|---|
+| `door_handle_a_4040.stl` | 1 | Left door handle |
+| `door_handle_b_4040.stl` | 1 | Right door handle |
+
+The handles mount to the vertical 4040 extrusion on the latch side of the door. The `_a` (left) and `_b` (right) handles are mirror images — the handle grip is the same, but the mounting tab and magnet pocket orientation are mirrored.
+
+The handle body clamps over the 4040 extrusion without drilling or additional hardware. A captured M3 heat-set insert on each handle allows the grip to be screwed to the clamping body from behind.
+
+### Magnetic latch
+
+| File | Qty | Description |
+|---|---|---|
+| `door_latch_magnet_4040.stl` | 1 | Magnetic latch body |
+
+The magnetic latch holds the door closed without a mechanical catch. A 6 mm × 3 mm cylindrical neodymium magnet presses into the latch pocket. A matching magnet mounts in the handle on the door. When the door closes, the magnets pull together and hold the door shut against the pressure of heated chamber air.
+
+<Info>
+  The magnet pocket is sized for a standard 6 mm × 3 mm neodymium disc magnet. Using a weaker ferrite magnet may not hold reliably against positive chamber pressure at elevated temperatures.
+</Info>
+
+## Assembly
+
+<Steps>
+  <Step title="Install hinge inserts">
+    Press M3 heat-set inserts into the hinge body mounting holes using a soldering iron. Let them cool fully before proceeding.
+  </Step>
+  <Step title="Mount hinges to the frame">
+    Slide T-nuts into the vertical 4040 frame extrusion. Position the lower hinge approximately 60 mm from the bottom of the door opening and the upper hinge approximately 60 mm from the top. Secure with M3 × 8 SHCS.
+  </Step>
+  <Step title="Attach the door panel to the hinges">
+    The door panel (acrylic or polycarbonate) mounts to the hinge pins. Ensure the panel is level before tightening the hinge pivot screws.
+  </Step>
+  <Step title="Mount handles and press in magnets">
+    Install the handle assembly on the latch-side 4040 extrusion of the door panel. Press a 6 mm × 3 mm magnet into the handle pocket and a matching magnet into the latch body on the frame. Orient the magnets so they attract (not repel) when the door closes.
+  </Step>
+</Steps>
+
+## Source files
+
+| Part | Source file |
+|---|---|
+| Door handle | `Door Handle v5.f3d` |
+| Door hinge | `Door Hinge 4040 v8.f3d` |
+| Door latch | `Door Latch Magnet v4.f3d` |

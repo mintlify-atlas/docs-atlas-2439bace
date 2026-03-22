@@ -1,80 +1,189 @@
 ---
 title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+description: "Get the files, print the parts, and understand what you need to build a Voron Tower."
 ---
 
-## Get started in three steps
+## Before you begin
 
-Get your documentation site running locally and make your first customization.
+Voron Tower is a modification of the **Voron 2.4 R2** — not a standalone printer design. You need a working knowledge of the stock Voron 2.4 R2 build before attempting this mod.
 
-### Step 1: Set up your local environment
+<Info>
+  Everything not listed in the modified parts table reuses standard Voron 2.4 R2 hardware and printed parts. Build the stock machine first if you haven't already.
+</Info>
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+<Steps>
 
-### Step 2: Deploy your changes
+<Step title="Get the files">
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
-
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
-
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
-
-### Step 3: Go live
-
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
-
-## Next steps
-
-Now that you have your docs running, explore these key features:
+The STL files and individual Fusion 360 source files are on GitHub. The full parametric assembly file is too large for GitHub and is hosted separately on Google Drive.
 
 <CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+  <Card title="GitHub repository" icon="github" href="https://github.com/PorcoMaster/VoronTower">
+    STL files, individual Fusion 360 source files, hardware list, and documentation.
+  </Card>
+  <Card title="Main Fusion 360 assembly" icon="cube" href="https://drive.google.com/file/d/1ePI7Y9nos1gBQOqrRFIDSbPcuf1UqJJw/view?usp=sharing">
+    The complete parametric assembly. Required if you want to adjust build volume or frame dimensions.
+  </Card>
 </CardGroup>
 
 <Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
+  The STL files in the GitHub repo are pre-exported for a **350×350mm** build. If you want a different size, open the main Fusion 360 assembly, adjust the parameters, and re-export the affected parts.
 </Note>
+
+</Step>
+
+<Step title="Choose your build size">
+
+The recommended build size is **350×350mm**. A 500×500mm build is possible but less tested — the gantry still uses a 2020 carriage at that size, which limits confidence in the larger variant.
+
+<Warning>
+  Do not change gantry parameters by more than ±3 mm from the defaults. The gantry profiles have a 6 mm tolerance window built in; exceeding it will cause fit issues. Use `gantry_x_front`, `gantry_x_back`, or `gantry_y` if adjustments are needed.
+</Warning>
+
+</Step>
+
+<Step title="Review the hardware list">
+
+A complete bill of materials for a 350×350mm build is included in the repository at `Voron Tower/Hardware List 350x350mm.xlsx`. Open it before ordering anything — it covers all 4040 extrusion lengths, fasteners, and motion hardware specific to this modification.
+
+<Tip>
+  The gantry profile cut lengths in the current Fusion 360 file have been standardized to round numbers ending in 0 or 5 mm, making them easier to order from extrusion suppliers.
+</Tip>
+
+</Step>
+
+<Step title="Print the parts">
+
+All modified STL files are in `Voron Tower/Files/Stl/` on GitHub. Print with the same settings you would use for standard Voron parts: ABS or ASA, 40% infill, 4 perimeters, 5 top/bottom layers.
+
+<AccordionGroup>
+
+  <Accordion title="Z Belt Driver for 4040 (8 parts)">
+    Located in `Z Belt Driver for 4040/`
+
+    | File | Qty |
+    |---|---|
+    | `z_belt_driver_a_1.stl` | 1 |
+    | `z_belt_driver_a_2.stl` | 1 |
+    | `z_belt_driver_b_1.stl` | 1 |
+    | `z_belt_driver_b_2.stl` | 1 |
+    | `z_motor_mount_a.stl` | 1 |
+    | `z_motor_mount_b.stl` | 1 |
+    | `belt_tensioner_a.stl` | 1 |
+    | `belt_tensioner_b.stl` | 1 |
+  </Accordion>
+
+  <Accordion title="Z Idler for 4040 (4 parts)">
+    Located in `Z idler 4040/`
+
+    | File | Qty |
+    |---|---|
+    | `z_idler_4040_1_a.stl` | 1 |
+    | `z_idler_4040_1_b.stl` | 1 |
+    | `z_idler_4040_2_a.stl` | 1 |
+    | `z_idler_4040_2_b.stl` | 1 |
+  </Accordion>
+
+  <Accordion title="Z Bearing Block (6 parts)">
+    Located in `Z Bearing/`
+
+    The top and bottom bearing block from the stock Voron 2.4 are merged into a single unified part (`z_bearing_block_v8.stl`). The front idler top and bottom are separate parts with `_a` and `_b` variants for left and right sides.
+
+    | File | Qty |
+    |---|---|
+    | `z_bearing_block_v8.stl` | 4 |
+    | `z_belt_clamp.stl` | 4 |
+    | `front_idler_top_a.stl` | 1 |
+    | `front_idler_top_b.stl` | 1 |
+    | `front_idler_bottom_a_1.stl` | 1 |
+    | `front_idler_bottom_b_1.stl` | 1 |
+  </Accordion>
+
+  <Accordion title="A/B Drive (4 parts)">
+    Located in `A B Drive/`
+
+    | File | Qty |
+    |---|---|
+    | `a_drive_1.stl` | 1 |
+    | `a_drive_2.stl` | 1 |
+    | `b_drive_1.stl` | 1 |
+    | `b_drive_2.stl` | 1 |
+  </Accordion>
+
+  <Accordion title="Door clips (4 parts)">
+    Located in `Door Clips/`
+
+    | File | Qty |
+    |---|---|
+    | `door_hinge_4040.stl` | per door panel |
+    | `door_handle_a_4040.stl` | 1 |
+    | `door_handle_b_4040.stl` | 1 |
+    | `door_latch_magnet_4040.stl` | per door |
+  </Accordion>
+
+  <Accordion title="Panel clips (2 parts)">
+    Located in `Panel Clips/`
+
+    | File | Qty |
+    |---|---|
+    | `corner_clip_4040.stl` | per corner |
+    | `midspan_clip_4040.stl` | per panel midspan |
+  </Accordion>
+
+  <Accordion title="Z chain lower mount (1 part)">
+    Located at the root of `Stl/`
+
+    | File | Qty |
+    |---|---|
+    | `z_chain_lower_mount.stl` | 1 |
+  </Accordion>
+
+</AccordionGroup>
+
+<Note>
+  The `Deprecated/` folder in the STL directory contains older versions of some parts. Do not print from there — use only the current files listed above.
+</Note>
+
+</Step>
+
+<Step title="Understand the Z axis change">
+
+One of the most significant mechanical changes in Voron Tower is the Z axis linear rail upgrade. The stock Voron 2.4 R2 uses **MGN9** rails on Z. Voron Tower uses **MGN12** rails.
+
+When ordering your hardware, make sure to source MGN12 carriages and rails at the correct length for your build size — MGN9 hardware from a stock Voron 2.4 BOM will not work here.
+
+</Step>
+
+<Step title="Read the build guide">
+
+Once you have the parts printed and hardware in hand, move to the build guide for assembly instructions on each modified component.
+
+<CardGroup cols={2}>
+  <Card title="Hardware list" icon="list-check" href="/build/hardware-list">
+    Full BOM for a 350×350mm Voron Tower build.
+  </Card>
+  <Card title="Assembly guide" icon="wrench" href="/build/assembly">
+    Step-by-step instructions for assembling the modified components.
+  </Card>
+</CardGroup>
+
+</Step>
+
+</Steps>
+
+## Tools you need
+
+<CardGroup cols={2}>
+  <Card title="3D printer" icon="print">
+    Any printer capable of printing ABS or ASA. The parts are sized for a Voron 2.4 toolhead but can be printed on most enclosed printers.
+  </Card>
+  <Card title="Standard Voron tools" icon="screwdriver-wrench">
+    The same hand tools used for a stock Voron 2.4 build: hex keys, soldering iron for heat-set inserts, flush cutters.
+  </Card>
+  <Card title="Fusion 360 (optional)" icon="cube">
+    Only required if you want to adjust parameters and re-export STLs for a custom build size. The pre-exported STLs cover a standard 350×350mm build.
+  </Card>
+  <Card title="Spreadsheet software" icon="table">
+    To open `Hardware List 350x350mm.xlsx` and track your parts order.
+  </Card>
+</CardGroup>

@@ -1,0 +1,63 @@
+---
+title: "A/B Drive"
+description: "CoreXY A and B motor drive blocks for the Voron Tower gantry, updated for 4040 profile mounting."
+---
+
+The A and B drives house the two NEMA17 motors that power the CoreXY motion system. In CoreXY, both motors work together to move the toolhead — motor A and motor B each pull one strand of the shared belt. The drive bodies mount these motors to the rear corners of the gantry and contain the drive pulleys and belt path entry points.
+
+## CoreXY motion
+
+In a CoreXY printer, neither motor is dedicated to a single axis. Instead:
+
+- Moving the toolhead in **X** requires both motors to turn in the same direction.
+- Moving the toolhead in **Y** requires the motors to turn in opposite directions.
+
+This means both A and B drives must be precisely aligned and their belt tensions balanced. An imbalance in tension or misaligned drive body causes the toolhead to travel in a diagonal rather than a straight line.
+
+## Why it needed to change for 4040
+
+The stock Voron 2.4 A/B drive bodies mount to the rear 2020 gantry extrusions. Voron Tower uses **4040 extrusions for the gantry** X and Y rails as well as the frame uprights. The wider 4040 profile shifts the mounting bolt pattern, changes the available clearances around the motor shaft, and moves the belt exit point relative to the gantry center.
+
+The redesigned drive bodies widen the mounting base to span the 4040 T-slots correctly and reposition the belt path exit to maintain proper belt geometry across the gantry.
+
+## Parts
+
+Each drive body is split into two pieces that bolt together. Splitting the body makes it possible to print both halves flat on the bed without supports, and allows the drive pulley and belt to be captured between the halves during assembly.
+
+| File | Qty | Description |
+|---|---|---|
+| `a_drive_1.stl` | 1 | A motor drive body, part 1 |
+| `a_drive_2.stl` | 1 | A motor drive body, part 2 |
+| `b_drive_1.stl` | 1 | B motor drive body, part 1 |
+| `b_drive_2.stl` | 1 | B motor drive body, part 2 |
+
+<Note>
+  The A drive mounts at the rear-left corner of the gantry and the B drive mounts at the rear-right corner, as viewed from the front of the printer. The two drives are not interchangeable — the motor exit and belt path geometry differ between A and B.
+</Note>
+
+<Warning>
+  Print both `_1` and `_2` for each drive. The two halves are not identical — they have different internal geometry for the belt path. Do not substitute one for the other.
+</Warning>
+
+## Assembly notes
+
+<Steps>
+  <Step title="Press in the motor">
+    Insert the NEMA17 motor into the pocket in part `_1` before joining the two halves. The motor boss seats into a recessed circle; seat it fully before proceeding.
+  </Step>
+  <Step title="Route the belt">
+    Pass the GT2 belt through the belt channel in part `_1`, over the drive pulley on the motor shaft, and out the belt exit slot. Keep the belt flat — do not allow it to twist inside the body.
+  </Step>
+  <Step title="Join the halves">
+    Bring part `_2` onto part `_1` and secure with M3 screws. The belt should be captured in the channel without pinching. Confirm the belt runs smoothly before tightening fully.
+  </Step>
+  <Step title="Mount to the gantry">
+    Slide T-nuts into the rear 4040 gantry extrusion and bolt the assembled drive to the rear gantry upright. Position the drive so the belt exits horizontally and parallel to the gantry Y extrusion.
+  </Step>
+</Steps>
+
+## Source file
+
+Fusion 360 source: `a_b_drives.f3d`
+
+Both the A and B drive bodies are contained in the same Fusion 360 file. Use the component browser to isolate each body for inspection or modification.

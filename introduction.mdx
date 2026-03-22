@@ -1,0 +1,82 @@
+---
+title: "Introduction"
+description: "A fully parametric Voron 2.4 modification using 4040 aluminum extrusion frames, with optional enclosure box and adjustable feet."
+---
+
+<img
+  src="https://github.com/PorcoMaster/VoronTower/assets/109048008/029d2b11-9173-45f9-8308-c8ac191a5d47"
+  alt="Voron Tower 3D Printer"
+/>
+
+## What is Voron Tower?
+
+Voron Tower is a community-driven modification of the [Voron 2.4 R2](https://vorondesign.com/) 3D printer that replaces the standard 2020 aluminum extrusion frame with a beefy **4040 series extrusion** profile. The result is a more rigid, stable machine capable of larger build volumes — designed to be built as a 350×350mm or scaled up to 500×500mm.
+
+The design is **fully parametric** in Fusion 360, meaning you can adjust the build volume, frame dimensions, gantry offsets, and more — all from a central parameter table — without manually editing individual sketches.
+
+<Note>
+  The largest Fusion 360 assembly file is hosted on Google Drive due to GitHub file size limits. [Download the main assembly here](https://drive.google.com/file/d/1ePI7Y9nos1gBQOqrRFIDSbPcuf1UqJJw/view?usp=sharing).
+</Note>
+
+## Key features
+
+<CardGroup cols={2}>
+  <Card title="4040 Frame" icon="cube" href="/design/frame">
+    Upgraded from 2020 to 4040 aluminum extrusion for increased rigidity and a tower-like aesthetic.
+  </Card>
+  <Card title="Parametric Design" icon="sliders" href="/design/parameters">
+    All dimensions driven by a central parameter table in Fusion 360 — change one value, the whole model updates.
+  </Card>
+  <Card title="MGN12 Z Rails" icon="arrows-up-down" href="/parts/z-bearing">
+    Z axis upgraded from MGN9 to MGN12 linear rails for smoother, more accurate bed movement.
+  </Card>
+  <Card title="Full Part Library" icon="folder-open" href="/parts/overview">
+    Every modified printed part is provided as STL and Fusion 360 source files.
+  </Card>
+  <Card title="Optional Enclosure" icon="box" href="/design/overview">
+    Door hinges, handles, latches, and panel clips designed specifically for 4040 extrusions.
+  </Card>
+  <Card title="Hardware BOM" icon="list-check" href="/build/hardware-list">
+    A complete bill of materials for a 350×350mm build, ready to order.
+  </Card>
+</CardGroup>
+
+## What's modified from stock Voron 2.4?
+
+Voron Tower is not a from-scratch design — it builds on the proven Voron 2.4 R2 platform. The following parts have been redesigned for 4040 extrusions:
+
+| Component | Change |
+|---|---|
+| Z Belt Drive | Redesigned for 4040 frame mounting |
+| Z Idler | Adapted for 4040 rail position |
+| Z Bearing Block | Top and bottom merged into one unified block |
+| Front Idler (Top & Bottom) | New geometry for 4040 profile |
+| A/B Drive | Updated mounting for 4040 gantry |
+| Z Chain Lower Mount | Repositioned for new frame |
+| Panel Clips | Corner and midspan clips for 4040 extrusions |
+| Door Clips | Handle, hinge, and magnetic latch for 4040 doors |
+
+Everything else — the toolhead, electronics, bed, gantry motion system — reuses standard Voron 2.4 R2 parts.
+
+## Project status
+
+<Info>
+  This project is actively developed. The recommended starting build size is **350×350mm**. The 500×500mm variant is possible but less tested, as the 2020 carriage is retained on the larger build.
+</Info>
+
+The Fusion 360 master file is fully parametric. Recent updates have:
+- Fixed all frame joint types and added joint animations
+- Corrected build volume calculations and added configurable offsets
+- Standardized gantry cut lengths to round numbers (ending in 0 or 5 mm)
+- Added `full_height`, `full_width`, `full_depth` parameters for total printer dimensions
+
+## Getting started
+
+<CardGroup cols={2}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Get the files and understand what you need to build your Voron Tower.
+  </Card>
+  <Card title="Build Guide" icon="wrench" href="/build/assembly">
+    Step-by-step assembly guidance for the modified components.
+  </Card>
+</CardGroup>

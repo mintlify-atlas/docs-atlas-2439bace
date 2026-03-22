@@ -1,0 +1,48 @@
+---
+title: "Z chain lower mount"
+description: "Cable chain anchor for the Z axis, repositioned for the 4040 frame geometry."
+---
+
+The Z chain lower mount anchors the bottom end of the Z axis cable chain. The cable chain carries the wires that run from the electronics bay up to the moving gantry — umbilical cables, including those for the toolhead, fans, and any bed probes routed through the gantry. The lower mount is the fixed anchor point; as the gantry moves in Z, the chain folds and unfolds between the lower mount and the upper mount on the gantry carriage.
+
+## Why it needed to change
+
+In the stock Voron 2.4 R2, the Z chain lower mount attaches to the 2020 extrusion at a position determined by the original frame geometry. In Voron Tower, two things change this:
+
+1. **The extrusion is wider.** The 4040 profile presents a different mounting face and T-slot position. The stock mount does not register correctly against the wider extrusion surface.
+2. **The chain path is different.** The taller 4040 uprights and the repositioned gantry travel range mean the chain must exit the mount at a slightly different angle and height to avoid fouling on the frame during Z travel.
+
+The redesigned `z_chain_lower_mount.stl` uses the correct slot positions for 4040 and positions the chain connector at the height and angle required by the Voron Tower Z travel envelope.
+
+## Part
+
+| File | Qty | Description |
+|---|---|---|
+| `z_chain_lower_mount.stl` | 1 | Z axis cable chain lower anchor |
+
+This is a single-piece part with no left/right variant. It mounts on the left side of the printer (as viewed from the front) to the vertical 4040 upright, adjacent to the Z rail.
+
+## Assembly notes
+
+<Steps>
+  <Step title="Insert T-nuts">
+    Slide two M3 T-nuts into the vertical 4040 upright at the Z lower mount position. The mount position is at the bottom of the Z travel range — refer to the build guide for the specific height.
+  </Step>
+  <Step title="Attach the mount">
+    Bolt `z_chain_lower_mount.stl` to the T-nuts using M3 × 8 SHCS. Leave the screws slightly loose for now.
+  </Step>
+  <Step title="Connect the cable chain">
+    Attach the bottom link of the Z cable chain to the mount connector. The chain pivot pin is a standard 3 mm rod or M3 screw.
+  </Step>
+  <Step title="Route cables and tighten">
+    Route the gantry cables through the chain, then verify the chain moves freely through the full Z travel range without binding on the frame. Tighten the mount screws once the cable routing is confirmed.
+  </Step>
+</Steps>
+
+<Warning>
+  Verify the cable chain clears the 4040 extrusion at both ends of Z travel — fully lowered (bed at bottom) and fully raised (bed at gantry). A chain that fouls on the frame will bind and may cause skipped Z steps or cable damage.
+</Warning>
+
+## Source file
+
+Fusion 360 source: `z chain lower mount v1.f3d`

@@ -1,0 +1,102 @@
+---
+title: "Fusion 360 parameters"
+description: "Reference for all Fusion 360 parameters in the Voron Tower design, including safe adjustment ranges and what each value controls."
+---
+
+The Voron Tower master assembly is fully parametric. All key dimensions are driven by named parameters in a central table — change a single value and every dependent sketch, extrusion length, and joint updates automatically.
+
+To access the parameter table in Fusion 360: **Modify → Change Parameters**.
+
+## Parameter explanation diagram
+
+The following image shows how the main offset parameters relate to the physical printer dimensions. Refer to this when you are trying to understand which parameter controls which dimension.
+
+<Frame caption="Visual explanation of the main Voron Tower parameters">
+  <img
+    src="https://github.com/PorcoMaster/VoronTower/blob/main/Voron%20Tower/Files/Docs/parameter_explanation.jpg"
+    alt="Diagram showing build_x_offset, build_y_offset, build_z_offset, full_height, full_width, and full_depth labeled on a cross-section of the printer frame"
+  />
+</Frame>
+
+## All parameters
+
+| Parameter | Default | Unit | Description |
+|---|---|---|---|
+| `build_x_offset` | 47 | mm | Distance between the inner face of the frame and the usable print area in X |
+| `build_y_offset` | 50 | mm | Distance between the inner face of the frame and the usable print area in Y |
+| `build_z_offset` | 24 | mm | Distance between the bottom of the print area and the frame bottom |
+| `build_x_y_z_offset` | — | mm | Combined offset applied uniformly to X, Y, and Z print area. Use this to add clearance above the build volume for free gantry movement |
+| `gantry_x_front` | — | mm | Position of the front gantry extrusion in X. Safe to adjust ±3mm, max ±6mm |
+| `gantry_x_back` | — | mm | Position of the rear gantry extrusion in X. Safe to adjust ±3mm, max ±6mm |
+| `gantry_y` | — | mm | Position of the gantry extrusions in Y. Safe to adjust ±3mm, max ±6mm |
+| `full_height` | — | mm | Total outer height of the frame including caster feet |
+| `full_width` | — | mm | Total outer width of the frame |
+| `full_depth` | — | mm | Total outer depth of the frame |
+| `caster_height` | — | mm | Height of the adjustable feet. Subtracted from the vertical extrusion lengths so the total height stays correct |
+
+## Build offset parameters
+
+`build_x_offset`, `build_y_offset`, and `build_z_offset` define how much space exists between the frame extrusions and the edge of the print bed. These values were updated in April 2024 to correct build volume calculations.
+
+These values were set to:
+- `build_x_offset` = **47 mm**
+- `build_y_offset` = **50 mm**
+- `build_z_offset` = **24 mm**
+
+<Info>
+  These offsets account for the extra width of the 4040 extrusion compared to the stock 2020 frame. Do not reduce them below the defaults unless you have verified clearances physically.
+</Info>
+
+## Gantry parameters
+
+`gantry_x_front`, `gantry_x_back`, and `gantry_y` control the precise position of the gantry extrusions within the frame. They exist because the gantry geometry involves geometric workarounds that require small corrections depending on your specific hardware.
+
+<Warning>
+  Keep gantry adjustments within **±3mm** of the default values. Going beyond ±3mm may cause joint interference or belt geometry problems. The absolute maximum is **±6mm** — beyond this the model will not work correctly.
+</Warning>
+
+### Gantry cut lengths
+
+All gantry extrusion cut lengths are rounded to values ending in **0 or 5 mm** (for example, 570mm or 475mm). This was changed in the April 2024 update — older versions of the file had awkward cut lengths like 572mm or 673mm.
+
+<Tip>
+  If you are cutting your own extrusions, the rounded sizes make it significantly easier to work with standard stock lengths and minimize waste.
+</Tip>
+
+## Frame dimension parameters
+
+`full_height`, `full_width`, and `full_depth` were added in the April 2024 update. They set the total outer dimensions of the printer and drive all frame extrusion cut lengths.
+
+Changing `full_height` also interacts with `caster_height`: the vertical extrusion lengths are calculated as `full_height − caster_height`, so adjustable feet are accounted for correctly.
+
+## The `build_x_y_z_offset` parameter
+
+`build_x_y_z_offset` adds a uniform offset above the nominal build volume. Its purpose is to give the gantry free movement space without requiring you to modify the bed size. Increasing this value pushes the effective ceiling of the print area up, giving more Z clearance for tall prints and allowing the gantry to move past the top of the bed without collision.
+
+## Caster height
+
+`caster_height` sets the height of whatever feet or casters you attach to the bottom of the frame. Setting this to the actual height of your feet ensures the vertical extrusion lengths come out correct and the total printer height matches `full_height`.
+
+<Tip>
+  If you are not using adjustable feet, set `caster_height` to **0**.
+</Tip>
+
+## Changing parameters safely
+
+<Steps>
+  <Step title="Open Change Parameters">
+    In Fusion 360, go to **Modify → Change Parameters** to open the parameter table.
+  </Step>
+  <Step title="Identify what you want to change">
+    Use the diagram at the top of this page to identify which parameter controls the dimension you want to adjust.
+  </Step>
+  <Step title="Change the value">
+    Double-click the value field next to the parameter name and enter your new value. Fusion 360 will immediately recompute the model.
+  </Step>
+  <Step title="Check for errors">
+    After changing a value, check the timeline and browser for red error markers. If errors appear, the change is outside what the model can accommodate — revert by pressing **Ctrl+Z**.
+  </Step>
+  <Step title="Verify cut lengths">
+    If you changed frame dimensions, inspect all extrusion cut lengths to confirm they are still practical values to cut.
+  </Step>
+</Steps>

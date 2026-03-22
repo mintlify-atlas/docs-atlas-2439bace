@@ -1,0 +1,130 @@
+---
+title: "Modifications from stock Voron 2.4 R2"
+description: "A technical reference for every design change in Voron Tower versus the stock Voron 2.4 R2, including frame, Z axis, and parametric model differences."
+---
+
+Voron Tower is not a full redesign — it is a focused modification of the Voron 2.4 R2. Understanding exactly what changed (and what did not) makes it easier to source parts, adapt existing builds, and troubleshoot issues.
+
+## Frame: 2020 → 4040 extrusion
+
+The most visible change is the frame. Every structural extrusion is replaced with **4040 series 10 aluminum extrusion** — a 40×40mm profile with 10mm slot width.
+
+<AccordionGroup>
+  <Accordion title="Bolt patterns and T-nut compatibility">
+    The 4040 series 10 profile uses a 10mm slot. Standard Voron 2.4 hardware uses M5 T-nuts designed for the 2020 6mm slot. These are **not interchangeable**.
+
+    - Replace all frame T-nuts with M5 roll-in T-nuts rated for 10mm slot extrusion.
+    - M3 T-nuts for panel clips and smaller accessories are also 10mm slot variants.
+    - Bolt lengths are largely unchanged — M5×10 and M5×12 socket head screws are standard throughout.
+  </Accordion>
+  <Accordion title="Corner brackets">
+    The 4040 frame does not use printed corner brackets for structural joints. The extrusion mass and direct fastening with T-nuts provides sufficient rigidity. Cosmetic corner caps are optional.
+  </Accordion>
+  <Accordion title="Rigidity and mass">
+    4040 extrusion is significantly stiffer and heavier than 2020. The assembled frame has measurably less flex under the dynamic loads of high-speed printing. The added mass also dampens resonance, which can improve print quality with input shaper tuning.
+  </Accordion>
+</AccordionGroup>
+
+## Z axis: MGN9 → MGN12 rails
+
+The Z linear rails are upgraded from MGN9 to **MGN12** to match the increased structural mass and carry the heavier 4040 frame Z carriage.
+
+| Attribute | Stock Voron 2.4 | Voron Tower |
+|---|---|---|
+| Rail type | MGN9H | MGN12H |
+| Qty | 2 | 2 |
+| Load rating | Lower | Higher |
+| Carriage width | 9mm | 12mm |
+
+<Note>
+  The 500×500mm build retains the stock **2020 Z carriage** rather than the 4040 variant. This is a known limitation and the reason the 500×500mm build is considered less tested. All other modifications (4040 frame, MGN12 rails, modified printed parts) still apply.
+</Note>
+
+## Z bearing block: 3-part consolidation
+
+The stock Voron 2.4 uses three separate printed parts to form the Z bearing/carriage assembly. Voron Tower replaces all three with a single part: **`z_bearing_block_v8`**.
+
+<Columns cols={2}>
+  <Card title="Stock Voron 2.4 (3 parts)" icon="layer-group">
+    - `z_bearing_block_upper`
+    - `z_bearing_block_lower`
+    - `z_belt_retainer`
+  </Card>
+  <Card title="Voron Tower (1 part)" icon="cube">
+    - `z_bearing_block_v8` (unified)
+    - `z_belt_clamp` (belt retention)
+  </Card>
+</Columns>
+
+The consolidated block reduces assembly steps, eliminates inter-part alignment issues, and provides a more rigid mounting surface for the MGN12 carriage.
+
+## Gantry profile sizing
+
+Gantry extrusion lengths in the parametric Fusion 360 model are standardized to values ending in **0 or 5 mm** (e.g., 330mm, 345mm, not 332mm or 347mm).
+
+This change was made to:
+- Simplify cutting and ordering from extrusion suppliers (most offer cuts in 5mm increments).
+- Avoid ambiguity when sharing model parameters between builders.
+- Ensure consistent belt geometry calculations in the parametric model.
+
+### Safe adjustment range
+
+If you need to adjust gantry lengths for a custom build size or to work around available stock lengths:
+
+| Parameter | Safe adjustment |
+|---|---|
+| `gantry_x_front` | ±3mm from calculated value |
+| `gantry_x_back` | ±3mm from calculated value |
+| `gantry_y` | ±3mm from calculated value |
+
+Adjustments beyond ±3mm may affect belt tension geometry and require re-evaluation of idler and drive positions.
+
+## Build volume offsets
+
+The Fusion 360 model uses three offset parameters to correctly position the printable volume within the 4040 frame. These account for the wider extrusion profile taking up more interior space than 2020.
+
+| Parameter | Value | Purpose |
+|---|---|---|
+| `build_x_offset` | 47mm | Horizontal offset for X build volume position |
+| `build_y_offset` | 50mm | Horizontal offset for Y build volume position |
+| `build_z_offset` | 24mm | Vertical offset for Z build volume position |
+
+<Warning>
+  Do not change these values without regenerating all frame-dependent dimensions in the Fusion 360 model. Incorrect offsets will cause the bed to be mispositioned relative to the printable area.
+</Warning>
+
+## What stays the same
+
+Voron Tower is designed to reuse as many standard Voron 2.4 R2 components as possible. The following are **unchanged**:
+
+<AccordionGroup>
+  <Accordion title="Toolhead">
+    Any Voron 2.4–compatible toolhead (e.g., Stealthburner, Afterburner) mounts identically. The X carriage interface is stock Voron 2.4 R2.
+  </Accordion>
+  <Accordion title="XY motion system">
+    The CoreXY belt geometry, A/B motor specifications, XY linear rails, and gantry carriage design are all stock Voron 2.4 R2. Only the mounting brackets for the A/B drives and front idlers are modified to bolt onto 4040 extrusions.
+  </Accordion>
+  <Accordion title="Electronics and wiring">
+    Controller boards, stepper drivers, Raspberry Pi mount, power supplies, and all wiring follow the standard Voron 2.4 R2 BOM and layout. No electrical changes are required.
+  </Accordion>
+  <Accordion title="Heated bed">
+    The 350×350mm heated bed, magnetic flex plate, and bed leveling hardware are all standard Voron 2.4 R2 components.
+  </Accordion>
+  <Accordion title="Hotend and extruder">
+    Any hotend and extruder combination compatible with the Voron 2.4 R2 toolhead works without modification.
+  </Accordion>
+</AccordionGroup>
+
+## 350×350mm vs 500×500mm
+
+| Attribute | 350×350mm | 500×500mm |
+|---|---|---|
+| Recommended | Yes | No (possible but less tested) |
+| Z carriage | 4040 design | Stock 2020 carriage |
+| Frame | 4040 throughout | 4040 throughout |
+| MGN12 Z rails | Yes | Yes |
+| Build status | Proven | Community experimental |
+
+<Info>
+  If building at 500×500mm, the retention of the 2020 Z carriage means the Z bearing block consolidation (`z_bearing_block_v8`) does not apply to that axis. All other printed part modifications still apply.
+</Info>

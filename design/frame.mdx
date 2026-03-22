@@ -1,0 +1,93 @@
+---
+title: "4040 frame"
+description: "What 4040 aluminum extrusion is, why Voron Tower uses it, how it affects frame stiffness and appearance, and how frame size relates to build volume."
+---
+
+The defining feature of Voron Tower is its use of 4040 aluminum extrusion instead of the 2020 profile used in the stock Voron 2.4 R2. This single change cascades through nearly every structural part of the printer.
+
+## What is 4040 extrusion?
+
+Aluminum extrusion profile names describe their cross-section in millimeters. **2020 extrusion** is 20mm × 20mm. **4040 extrusion** is 40mm × 40mm — four times the cross-sectional area.
+
+4040 extrusion is a standard industrial profile used in machine frames, CNC routers, and gantry systems. It is available from many suppliers and can be ordered pre-cut or cut to length.
+
+<Columns cols={2}>
+  <Card title="2020 extrusion (stock Voron)" icon="minus">
+    20×20mm profile. Lightweight, low cost, sufficient for standard Voron builds up to 350mm.
+  </Card>
+  <Card title="4040 extrusion (Voron Tower)" icon="plus">
+    40×40mm profile. Heavier and stiffer. Resists racking and flex at higher speeds and larger build volumes.
+  </Card>
+</Columns>
+
+## Series 10 profile
+
+The Voron Tower design uses the **series 10** T-slot profile, which has a 10mm slot width. This is the most common standard for 4040 extrusion and is compatible with M5 T-nuts and standard 3D printing hardware.
+
+<Info>
+  The series designation refers to the T-slot width, not the extrusion size. Series 10 is the most widely available standard. Verify your extrusion is series 10 when ordering — "4040 series 8" would require different hardware.
+</Info>
+
+## Why 4040 instead of 2020?
+
+The increased cross-section provides significantly higher stiffness in both bending and torsion. For a 3D printer frame this matters because:
+
+- **Frame racking** — a flexible frame allows the top of the printer to shift relative to the bottom under belt tension and dynamic loads. 4040 resists this more effectively.
+- **Resonance** — a stiffer frame has higher natural frequencies, which reduces the chance of frame resonance interfering with input shaper tuning.
+- **Scalability** — as build volume grows, frame deflection under load grows faster with 2020. The 4040 profile allows the design to scale to 500×500mm without the frame becoming the limiting factor.
+
+## The tower aesthetic
+
+The 4040 frame gives the printer a distinctly different visual character from a stock Voron 2.4. The chunky extrusions create a more industrial, monolithic appearance — which is where the name "Voron Tower" comes from.
+
+The increased outer dimensions of the frame mean the printer is physically larger than a stock Voron with an equivalent build volume. Plan your space accordingly.
+
+## Frame extrusion lengths
+
+All extrusion lengths in the Voron Tower design are driven by parameters in the Fusion 360 file. The key parameters are:
+
+| Parameter | Controls |
+|---|---|
+| `full_height` | Vertical extrusion lengths (total printer height including feet) |
+| `full_width` | Horizontal X-axis extrusion lengths |
+| `full_depth` | Horizontal Y-axis extrusion lengths |
+| `caster_height` | Subtracted from vertical lengths to account for adjustable feet |
+
+The actual cut length for vertical extrusions is `full_height − caster_height`. If you are not using feet, set `caster_height` to 0.
+
+<Warning>
+  Do not measure extrusion lengths manually from the model. Always read cut lengths from the parameter table or from the cut list in the Fusion 360 assembly. Manual measurement of a parametric model can include reference geometry that is not representative of the physical part.
+</Warning>
+
+## Frame size and build volume
+
+The relationship between frame outer dimensions and usable build volume is controlled by the build offset parameters:
+
+- The X print area = `full_width − (2 × build_x_offset)`
+- The Y print area = `full_depth − (2 × build_y_offset)`
+- The Z print area starts at `build_z_offset` from the bottom
+
+With the default offsets (`build_x_offset` = 47mm, `build_y_offset` = 50mm, `build_z_offset` = 24mm), a frame sized for a **350×350mm** build is the recommended starting configuration. A **500×500mm** build is possible but less tested.
+
+<Note>
+  The 500×500mm build uses the same 2020-based carriage as the stock Voron 2.4. The developer's initial build is 350×350mm for this reason — scaling the carriage to match the 4040 frame is a future consideration.
+</Note>
+
+## Sourcing 4040 extrusion
+
+When ordering extrusion, you need to specify:
+
+1. **Profile size**: 4040
+2. **Series**: 10 (10mm T-slot width)
+3. **Cut lengths**: from the Fusion 360 parameter table or cut list
+4. **Quantity**: refer to the [hardware list](/build/hardware-list) for the 350×350mm build
+
+<Tip>
+  Many extrusion suppliers offer free or low-cost cutting services. Providing them with lengths ending in 0 or 5mm — which the Voron Tower design ensures — makes ordering straightforward and reduces cutting errors.
+</Tip>
+
+## MGN12 Z rails
+
+Switching to 4040 extrusions also required changing the Z axis linear rails. The stock Voron 2.4 uses MGN9 rails on the Z axis. Voron Tower upgrades these to **MGN12** rails, which are wider and better suited to the larger, heavier frame.
+
+All Z-axis printed parts (the bearing block, Z idler, and Z belt drive) have been redesigned for MGN12. If you are sourcing rails, order MGN12 for all four Z columns. See [Z bearing block](/parts/z-bearing) and [Z idler](/parts/z-idler) for part details.

@@ -1,0 +1,106 @@
+---
+title: "Hardware list"
+description: "Bill of materials for a Voron Tower 350×350mm build, covering frame extrusions and modified hardware requirements."
+---
+
+<Warning>
+  This is a community modification of the Voron 2.4 R2. Always cross-reference with the [official Voron 2.4 R2 BOM](https://vorondesign.com/voron2.4) for non-frame components. The project maintainer is not responsible for sourcing errors.
+</Warning>
+
+The Voron Tower replaces the standard 2020 aluminum extrusion frame with 4040 series extrusions. The majority of hardware — fasteners, motion components, electronics, and the bed — follows the standard Voron 2.4 R2 BOM. Only the frame extrusions and Z-axis rails differ significantly.
+
+<Note>
+  The official hardware list spreadsheet for the 350×350mm build is available on GitHub: [Hardware List 350×350mm.xlsx](https://github.com/PorcoMaster/VoronTower/blob/main/Voron%20Tower/Hardware%20List%20350x350mm.xlsx). Download it for the authoritative quantities and part numbers.
+</Note>
+
+## Frame extrusions
+
+All frame members use **4040 series 10 aluminum extrusion** (slot size 10mm, profile 40×40mm). This is a direct upgrade from the 2020 profile used in stock Voron 2.4.
+
+<Info>
+  Gantry extrusions should be cut to lengths ending in **0 or 5 mm** to align with the parametric model. Safe adjustment range is ±3mm for `gantry_x_front`, `gantry_x_back`, and `gantry_y` from the calculated values.
+</Info>
+
+| Member | Qty | Notes |
+|---|---|---|
+| Vertical corner extrusions | 4 | Height depends on Z travel + offsets |
+| Bottom horizontal extrusions (X) | 2 | 350mm build width + offsets |
+| Bottom horizontal extrusions (Y) | 2 | 350mm build depth + offsets |
+| Top horizontal extrusions (X) | 2 | Same as bottom |
+| Top horizontal extrusions (Y) | 2 | Same as bottom |
+| Gantry X front | 1 | Cut to round number per parameter table |
+| Gantry X back | 1 | Cut to round number per parameter table |
+| Gantry Y (left & right) | 2 | Cut to round number per parameter table |
+
+## Linear rails
+
+The Z axis is upgraded from MGN9 to MGN12 for increased load capacity and rigidity. XY motion retains standard Voron 2.4 R2 rail specifications.
+
+| Axis | Rail type | Qty | Notes |
+|---|---|---|---|
+| Z (bed carriage) | MGN12H | 2 | Longer than stock due to 4040 frame height |
+| X (toolhead) | MGN12H | 1 | Standard Voron 2.4 R2 spec |
+| Y (left) | MGN12H | 1 | Standard Voron 2.4 R2 spec |
+| Y (right) | MGN12H | 1 | Standard Voron 2.4 R2 spec |
+
+## Motion system
+
+All motion hardware follows the standard Voron 2.4 R2 BOM. No changes are required for belts, pulleys, or bearings.
+
+| Component | Qty | Notes |
+|---|---|---|
+| GT2 6mm belt (Z) | 4 lengths | One per Z motor, length depends on frame height |
+| GT2 6mm belt (XY) | 2 lengths | Standard Voron 2.4 R2 lengths |
+| GT2 20T pulley (5mm bore) | 4 | Z motor pulleys |
+| GT2 20T pulley (5mm bore) | 2 | A/B drive motor pulleys |
+| GT2 idler (smooth, 3mm bore) | 4 | Z idler upper |
+| GT2 idler (toothed, 3mm bore) | 2 | Front idler lower |
+| F695 flanged bearing | 8 | Z belt tensioner and idler |
+| 625 bearing | 4 | Z idler |
+
+## Motors
+
+| Component | Qty | Notes |
+|---|---|---|
+| NEMA17 stepper (Z) | 4 | Standard Voron 2.4 R2 spec (e.g., LDO-42STH40-1684L) |
+| NEMA17 stepper (A/B drive) | 2 | Standard Voron 2.4 R2 spec |
+| NEMA17 stepper (extruder) | 1 | Toolhead-dependent |
+
+## Fasteners
+
+Fastener requirements are largely identical to the Voron 2.4 R2 BOM. The 4040 extrusion uses M5 T-nuts (roll-in or hammer) with the 10mm slot profile — confirm T-nut compatibility with your extrusion supplier.
+
+| Type | Sizes | Notes |
+|---|---|---|
+| Socket head cap screws | M3×6, M3×8, M3×10, M3×12, M3×16, M3×20, M3×25, M3×30 | Standard Voron 2.4 R2 quantities |
+| Socket head cap screws | M5×10, M5×12, M5×16 | Frame and rail mounting |
+| Button head screws | M3×6, M3×8 | Panel and door clips |
+| T-nuts (roll-in) | M3, M5 | Must be 10mm slot profile for 4040 extrusion |
+| Heat-set inserts | M3×5×4 | Standard Voron 2.4 R2 quantities |
+| Hex nuts | M3, M5 | Standard Voron 2.4 R2 quantities |
+
+<Warning>
+  Standard 2020 M5 T-nuts (6mm slot) are **not compatible** with 4040 series 10 extrusion (10mm slot). Verify the slot width of your 4040 extrusion purchase and order matching T-nuts.
+</Warning>
+
+## Heated bed and build plate
+
+| Component | Qty | Notes |
+|---|---|---|
+| 350×350mm heated bed | 1 | Standard Voron 2.4 R2 spec |
+| 350×350mm magnetic flex plate | 1 | Standard Voron 2.4 R2 spec |
+| Bed mounting hardware | — | Standard Voron 2.4 R2 BOM |
+
+## Electronics
+
+All electronics are unchanged from the stock Voron 2.4 R2. Use the official Voron BOM for:
+
+- Controller board (e.g., Octopus, Manta M8P)
+- Raspberry Pi or equivalent SBC
+- Stepper drivers (TMC2209 recommended)
+- Power supplies (24V bed PSU + 24V main PSU)
+- Wiring, connectors, and cable management
+
+<Note>
+  For official sourcing guides and trusted vendor lists, see the [Voron sourcing guide](https://vorondesign.com/sourcing_guide) and the [LDO kit offerings](https://ldomotors.com). Community-sourced hardware lists are also available on the Voron Discord.
+</Note>

@@ -1,0 +1,51 @@
+---
+title: "Z Idler for 4040"
+description: "Z belt idler mounts for the top corners of the 4040 frame, redirecting the Z lifting belts."
+---
+
+The Z idlers sit at the top four corners of the printer frame and redirect the Z lifting belts — the belts run up from the bottom-mounted Z motors, over the idler pulleys at the top, and back down to the gantry. Without proper idler positioning, the belt path would not be vertical, introducing binding and inconsistent Z motion.
+
+## Why it needed to change
+
+The stock Voron 2.4 Z idlers mount to 2020 extrusion corners and use geometry specific to that profile. On the 4040 frame, the top corners present a wider mounting surface with T-slots positioned further from the corner edge. The idler body was redesigned to bridge the correct slot positions and to align the idler pulley with the belt path created by the new 4040-based Z drive assembly at the bottom.
+
+## Parts
+
+There are two idler variants — idler 1 and idler 2 — for each side. The difference is their mounting position and orientation on the top frame corners. Each printer uses all four variants.
+
+| File | Qty | Position |
+|---|---|---|
+| `z_idler_4040_1_a.stl` | 1 | Front-left top corner, idler 1 |
+| `z_idler_4040_1_b.stl` | 1 | Front-right top corner, idler 1 |
+| `z_idler_4040_2_a.stl` | 1 | Rear-left top corner, idler 2 |
+| `z_idler_4040_2_b.stl` | 1 | Rear-right top corner, idler 2 |
+
+<Note>
+  All four parts are unique — do not substitute one variant for another. The belt path angle and pulley position differ between idler 1 and idler 2 positions.
+</Note>
+
+## Belt path
+
+The Z idlers work in conjunction with the Z drive assembly at the bottom of each corner upright. The belt path for each corner is:
+
+```
+Z Motor (bottom) → Belt Tensioner → Drive Block → [vertical run] → Z Idler (top) → [vertical run down] → Gantry attachment point
+```
+
+All four corners must be aligned so the belt hangs vertically. Misaligned idlers cause the gantry to rack (tilt) under Z motion, which shows up as Z banding in prints.
+
+## Assembly notes
+
+<Tip>
+  Install the idler pulley (a standard 625 bearing with a washer stack) before bolting the idler body to the frame. Access is easier before the body is constrained.
+</Tip>
+
+<Warning>
+  The idler bodies mount to the **top** horizontal extrusions, not the vertical uprights. Confirm the T-nut orientation matches the slot on the top extrusion before tightening.
+</Warning>
+
+## Source file
+
+Fusion 360 source: `Z Idler 4040 v24.f3z`
+
+The `.f3z` format is a Fusion 360 archive that includes all sub-components referenced by the assembly. Open it with **File → Open** in Fusion 360.

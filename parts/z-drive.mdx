@@ -1,0 +1,72 @@
+---
+title: "Z Belt Driver for 4040"
+description: "Motor mounts, belt tensioners, and drive blocks for the Z belt system, redesigned to mount on 4040 extrusion."
+---
+
+The Z belt drive system transfers motion from the four Z stepper motors to the gantry lifting belts. In Voron Tower, all four drive assemblies are redesigned to mount directly onto the **4040 extrusion** uprights, which have a wider profile and different T-slot spacing than the 2020 extrusions used in stock Voron 2.4 R2.
+
+## Why it needed to change
+
+The stock Voron 2.4 Z motor mounts and drive blocks grip the 2020 extrusion using a specific slot width and bolt pattern. The 4040 extrusion is 40 mm wide on both axes — twice the width of 2020 — which shifts the T-nut positions, changes the available mounting faces, and moves the belt path relative to the frame corner.
+
+Rather than shimming or adapting the original parts, the entire drive assembly was redesigned to use the correct slot positions and bolt hole spacing for 4040 profiles.
+
+## Parts
+
+### Motor mount
+
+| File | Qty | Description |
+|---|---|---|
+| `z_motor_mount_a.stl` | 2 | Left Z motor mount |
+| `z_motor_mount_b.stl` | 2 | Right Z motor mount |
+
+The motor mounts attach the NEMA17 Z stepper motors to the bottom of the 4040 vertical extrusions. The mounting face is wider than the stock design to span the 4040 slot pattern, and the motor boss is positioned to align the drive pulley with the redesigned belt path.
+
+<Info>
+  Print 2 of each (4 total per printer — one per Z motor). The `_a` and `_b` variants are mirror images.
+</Info>
+
+### Belt tensioner
+
+| File | Qty | Description |
+|---|---|---|
+| `belt_tensioner_a.stl` | 2 | Left belt tensioner |
+| `belt_tensioner_b.stl` | 2 | Right belt tensioner |
+
+The belt tensioners allow adjustment of Z belt tension without disassembling the drive. They slide within the motor mount body and are retained by a screw that applies preload to the motor. Proper belt tension is critical for consistent Z height across all four corners.
+
+### Drive block
+
+| File | Qty | Description |
+|---|---|---|
+| `z_belt_driver_a_1.stl` | 2 | Left drive block, part 1 |
+| `z_belt_driver_a_2.stl` | 2 | Left drive block, part 2 |
+| `z_belt_driver_b_1.stl` | 2 | Right drive block, part 1 |
+| `z_belt_driver_b_2.stl` | 2 | Right drive block, part 2 |
+
+Each drive block is split into two pieces (`_1` and `_2`) that bolt together around the belt and pulley. Splitting the part allows both halves to be printed flat without supports, and makes it possible to install the block around an already-routed belt.
+
+<Warning>
+  Print both `_1` and `_2` for each side. Using only one piece will leave the belt unretained. You need 4 pairs total (8 parts).
+</Warning>
+
+## Assembly summary
+
+<Steps>
+  <Step title="Mount the motor">
+    Attach the stepper motor to `z_motor_mount_a` or `z_motor_mount_b` using M3 screws. Route the motor cable before bolting the mount to the extrusion.
+  </Step>
+  <Step title="Install the belt tensioner">
+    Insert `belt_tensioner_a` or `belt_tensioner_b` into the slot on the motor mount. Leave the tensioner screw loose until belt routing is complete.
+  </Step>
+  <Step title="Attach the drive block">
+    Clamp the `_1` and `_2` halves of the drive block around the GT2 pulley and belt path. Bolt the two halves together, then secure the assembled block to the 4040 extrusion using T-nuts.
+  </Step>
+  <Step title="Tension the belt">
+    With the belt routed through the full Z system, tighten the tensioner screw on each motor mount until the belt has a consistent, firm tension. All four Z belts should have matching tension.
+  </Step>
+</Steps>
+
+## Source file
+
+Fusion 360 source: `z belt driver for 4040 v13.f3d`

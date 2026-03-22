@@ -1,0 +1,80 @@
+---
+title: "Printed parts overview"
+description: "All modified printed parts for Voron Tower, organized by category, with printing recommendations."
+---
+
+Voron Tower replaces or modifies a targeted set of printed parts from the stock Voron 2.4 R2. Every part in this section has been redesigned to fit the **4040 aluminum extrusion** frame. All other printed parts — toolhead, gantry carriages, electronics mounts — are standard Voron 2.4 R2 parts and are not covered here.
+
+<Note>
+  Parts with `_a` and `_b` suffixes are mirrored pairs — `_a` is the left side and `_b` is the right side when viewed from the front of the printer. You need to print both unless stated otherwise.
+</Note>
+
+## Part categories
+
+<CardGroup cols={2}>
+  <Card title="Z Belt Driver" icon="gear" href="/parts/z-drive">
+    Motor mounts, belt tensioners, and drive blocks for the Z belt system. Redesigned for 4040 mounting slots.
+  </Card>
+  <Card title="Z Idler" icon="circle-dot" href="/parts/z-idler">
+    Top-of-frame Z belt idler mounts. Four parts cover the four frame corners.
+  </Card>
+  <Card title="Z Bearing Block & Front Idler" icon="arrows-up-down" href="/parts/z-bearing">
+    Unified Z bearing block (3 parts merged into 1), Z belt clamp, and front idler for the MGN12 Z rails.
+  </Card>
+  <Card title="A/B Drive" icon="arrow-right-arrow-left" href="/parts/ab-drive">
+    CoreXY motor drive blocks for the A and B motors, each split into two printable pieces.
+  </Card>
+  <Card title="Door clips" icon="door-open" href="/parts/door-clips">
+    Hinges, handles, and magnetic latch designed specifically for 4040 extrusion door frames.
+  </Card>
+  <Card title="Panel clips" icon="paperclip" href="/parts/panel-clips">
+    Corner and midspan clips that retain acrylic or polycarbonate enclosure panels on 4040 extrusions.
+  </Card>
+  <Card title="Z chain lower mount" icon="link" href="/parts/z-chain-mount">
+    Cable chain anchor for the Z axis, repositioned for the 4040 frame geometry.
+  </Card>
+</CardGroup>
+
+## Printing recommendations
+
+<AccordionGroup>
+  <Accordion title="Material" defaultOpen={true}>
+    Print all structural and motion-related parts in **ABS or ASA**. These materials tolerate the elevated chamber temperatures of an enclosed printer (60–70 °C) without warping or creep over time. PLA will soften near the heated bed and is not suitable for any part mounted to the frame or motion system.
+
+    Door handles and panel clips can be printed in PETG if the printer runs without active chamber heating, but ABS/ASA is still preferred for consistency.
+  </Accordion>
+  <Accordion title="Layer height and perimeters">
+    Use a **0.2 mm layer height** for all parts. Thicker layers reduce resolution on overhangs and detail surfaces; thinner layers are unnecessary for structural parts and add print time without benefit.
+
+    Set at least **4 perimeters (walls)**. Most structural parts — motor mounts, bearing blocks, drive bodies — carry load through their perimeters, not their infill. 4 perimeters ensures adequate wall thickness across all part geometries.
+  </Accordion>
+  <Accordion title="Infill">
+    Use **40% infill** for all structural parts (motor mounts, bearing blocks, drive bodies, idlers). Rectilinear or gyroid patterns both work well.
+
+    Cosmetic parts with no structural load (door handles, panel clips) can be printed at 20–30% infill to save material and time.
+  </Accordion>
+  <Accordion title="Supports">
+    Most parts are designed to print without supports. A small number of parts have bridging overhangs that require supports — check the part notes on each category page. Orient parts as provided in the STL file name (there is no separate `_oriented` version; the STLs are already in the correct print orientation).
+  </Accordion>
+  <Accordion title="Color">
+    There is no required color scheme. The stock Voron 2.4 convention uses accent colors for visible parts and black for structural parts, but Voron Tower does not enforce this. Print in whatever colors suit your build.
+  </Accordion>
+</AccordionGroup>
+
+## Naming conventions
+
+| Suffix | Meaning |
+|---|---|
+| `_a` | Left side (when viewed from front) |
+| `_b` | Right side (when viewed from front) |
+| `_1`, `_2` | Separate pieces that bolt together — print all numbered variants |
+| `_4040` | Modified specifically for 4040 extrusion; does not fit standard 2020 Voron 2.4 |
+| `_v8`, `_v13`, etc. | Version number in the Fusion 360 source — the STL is always the current version |
+
+## Source files
+
+Every part has a corresponding Fusion 360 source file in the `Files/Fusion Files/` directory of the repository. The `.f3d` format is a single-body or multi-body component; `.f3z` is an archive that includes all referenced sub-components.
+
+<Tip>
+  If you need to modify a part — for example, to adjust for a non-standard panel thickness or a different stepper motor — open the Fusion 360 source and change the relevant user parameter rather than editing the geometry directly.
+</Tip>

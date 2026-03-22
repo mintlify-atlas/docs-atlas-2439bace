@@ -1,0 +1,141 @@
+---
+title: 'Frequently asked questions'
+description: 'Common questions about the Voron Tower project — a Voron 2.4 R2 modification using 4040 aluminum extrusion frames.'
+---
+
+<AccordionGroup>
+
+  <Accordion title="What is Voron Tower?">
+    Voron Tower is a modification of the [Voron 2.4 R2](https://vorondesign.com/) 3D printer that replaces the standard 2020 aluminum extrusion frame with 4040 series extrusion. The design is fully parametric and built in Fusion 360, allowing you to adjust build volume and key dimensions without starting from scratch.
+
+    You can see the design in action in this [YouTube overview](https://www.youtube.com/watch?v=f0kk1qKtl04).
+  </Accordion>
+
+  <Accordion title="Is this a complete printer or a modification kit?">
+    Voron Tower is a modification, not a standalone printer kit. It is designed to be built on top of your knowledge of the Voron 2.4 R2. The frame and several custom printed parts differ from the stock Voron 2.4 R2, but the majority of motion hardware, electronics, and non-frame components remain compatible.
+
+    The author is actively building this printer themselves, so the design reflects real-world intent rather than being purely conceptual.
+  </Accordion>
+
+  <Accordion title="What do I need to get started?">
+    Before starting a Voron Tower build, you should have:
+
+    - Familiarity with building or maintaining a Voron 2.4 R2
+    - A 3D printer capable of printing the custom STL parts
+    - 4040 series 10 aluminum extrusion (in place of the standard 2020 profile)
+    - MGN12 linear rails for the Z axis (the stock Voron 2.4 R2 uses MGN9)
+    - Fusion 360 is optional but recommended if you want to adjust parametric dimensions
+
+    All non-frame hardware uses standard Voron 2.4 R2 components.
+  </Accordion>
+
+  <Accordion title="Where do I download the main Fusion 360 file?">
+    The main Fusion 360 design file is hosted on Google Drive because it is too large to store in the GitHub repository:
+
+    [Download Fusion 360 file](https://drive.google.com/file/d/1ePI7Y9nos1gBQOqrRFIDSbPcuf1UqJJw/view?usp=sharing)
+
+    Open this file in Fusion 360 to view the full parametric model, adjust dimensions, and export STLs.
+  </Accordion>
+
+  <Accordion title="What extrusion size does this use?">
+    Voron Tower uses **4040 aluminum extrusion** for the frame, replacing the 2020 profile used in the stock Voron 2.4 R2. The extrusion is series 10 (the author believes this is correct but notes some uncertainty — verify with your supplier before ordering).
+
+    The heavier 4040 profile increases frame rigidity compared to the standard build.
+  </Accordion>
+
+  <Accordion title="Can I use this for a 500×500 build?">
+    Yes, a 500×500mm build is possible. However, it is less tested than the recommended 350×350mm configuration.
+
+    One important limitation: the Z carriage on a 500×500 build remains 2020 extrusion rather than upgrading to 4040. If you are planning a 500×500 build, be aware that this aspect of the design has had less real-world validation.
+
+    The recommended and most tested build size is **350×350mm**.
+  </Accordion>
+
+  <Accordion title="Why does the Z axis use MGN12 instead of MGN9?">
+    The Z axis has been upgraded from the stock MGN9 linear rails to **MGN12** rails. The larger rail profile provides improved load capacity and stiffness for the heavier 4040 frame assembly, contributing to better Z-axis stability over the full travel range.
+  </Accordion>
+
+  <Accordion title="How do I change the build volume?">
+    Build volume is controlled through parametric dimensions in the Fusion 360 file. Open the model, navigate to the parameters panel, and adjust the relevant values. The design will update accordingly.
+
+    The key build volume offsets are:
+
+    | Parameter | Value |
+    |---|---|
+    | `build_x_offset` | 47 mm |
+    | `build_y_offset` | 50 mm |
+    | `build_z_offset` | 24 mm |
+
+    These offsets reflect the difference between the nominal build volume and the actual printable area given the frame geometry. Adjust base dimensions to match your target build size, keeping these offsets in mind.
+  </Accordion>
+
+  <Accordion title="How much can I adjust the gantry dimensions?">
+    The gantry parameters (`gantry_x_front`, `gantry_x_back`, and `gantry_y`) each have defined safe and maximum adjustment ranges:
+
+    | Range | Value |
+    |---|---|
+    | Safe adjustment | ±3 mm |
+    | Maximum adjustment | ±6 mm |
+
+    Staying within ±3mm is recommended for normal use. Pushing to ±6mm is possible but approaches the limits of what the geometry can accommodate without risking fit or clearance issues.
+  </Accordion>
+
+  <Accordion title="What parts from my Voron 2.4 R2 can I reuse?">
+    All non-frame hardware from a standard Voron 2.4 R2 is compatible with Voron Tower. This includes motion components, electronics, hotend, bed, and fasteners.
+
+    The parts that are **custom to Voron Tower** (and must be reprinted or sourced separately) are:
+
+    - Z belt drive
+    - Z idler
+    - Z bearing block (consolidated from 3 parts to 1)
+    - Front idler top and bottom
+    - A/B drive
+    - Z chain lower mount
+    - Panel clips
+    - Door clips
+
+    Everything else follows the standard Voron 2.4 R2 BOM.
+  </Accordion>
+
+  <Accordion title="What are the build volume offsets?">
+    The following offsets define how the frame geometry translates to printable volume:
+
+    | Parameter | Value |
+    |---|---|
+    | `build_x_offset` | 47 mm |
+    | `build_y_offset` | 50 mm |
+    | `build_z_offset` | 24 mm |
+
+    These are fixed values built into the parametric model. If you are calculating your actual printable area from the frame size, subtract these offsets accordingly.
+  </Accordion>
+
+  <Accordion title="What's the difference between _a and _b STL files?">
+    File pairs ending in `_a` and `_b` are mirrored left/right versions of the same part. For any given component that appears on both sides of the printer, you will find two STL files — one for the left side (`_a`) and one for the right side (`_b`). Print one of each unless the instructions specify otherwise.
+  </Accordion>
+
+  <Accordion title="What happened to the old deprecated files?">
+    Earlier versions of some parts have been superseded by updated designs. The deprecated files are preserved and available for download if needed:
+
+    [Download deprecated files archive](https://drive.google.com/file/d/1OqIFfqwKYdB3r7j7NeKnkWH7O517zN0H/view?usp=sharing)
+
+    In general, you should use the current files from the main repository. The deprecated archive exists as a reference for anyone mid-build on an older revision.
+  </Accordion>
+
+  <Accordion title="Is the design complete and production-ready?">
+    Voron Tower is an active development project. The design is detailed and fully parametric, and the author is building the printer themselves — so it is grounded in real hardware intent rather than being purely theoretical.
+
+    That said, the project is still being developed and refined. Less common configurations (such as 500×500) are less tested. Treat this as a community project in active development rather than a finalized, validated product.
+  </Accordion>
+
+  <Accordion title="How do I get help or give feedback?">
+    The author welcomes feedback and is actively developing the design. The best place to ask questions or report issues is the GitHub repository's issue tracker.
+
+    When filing an issue, include:
+    - Your build size
+    - Which parts or parameters are involved
+    - Any relevant screenshots or measurements
+
+    You can also reference the [YouTube video](https://www.youtube.com/watch?v=f0kk1qKtl04) for visual context on the overall design intent.
+  </Accordion>
+
+</AccordionGroup>

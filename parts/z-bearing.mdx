@@ -1,0 +1,75 @@
+---
+title: "Z Bearing Block and Front Idler"
+description: "Redesigned Z bearing block (three parts merged into one), Z belt clamp, and front idlers for the MGN12 Z rail upgrade."
+---
+
+The Z bearing block mounts the MGN12 linear rail carriage to the gantry and carries the Z belt attachment points. The front idler parts redirect the A and B drive belts around the front corners of the gantry. Both assemblies required redesign for the 4040 frame and the MGN12 rail upgrade.
+
+## MGN12 upgrade
+
+Stock Voron 2.4 R2 uses **MGN9** linear rails on the Z axis. Voron Tower upgrades these to **MGN12** rails — a wider rail with a larger carriage block. MGN12 provides a larger bearing contact area, higher load capacity, and more resistance to moment loads compared to MGN9.
+
+<Info>
+  MGN12 rails are a drop-in replacement in terms of mounting hole spacing on the extrusion. The printed bearing block is what changes — the carriage interface pattern is different between MGN9 and MGN12.
+</Info>
+
+## Z bearing block
+
+### Consolidation from three parts to one
+
+In the stock Voron 2.4 R2, the Z bearing block assembly consists of three separate printed parts:
+
+- `z_bearing_block` (main body)
+- `z_bearing_block_top`
+- `z_bearing_block_bottom`
+
+In Voron Tower, these three parts are **merged into a single unified block**: `z_bearing_block_v8.stl`.
+
+Consolidating the parts eliminates alignment issues between the top and bottom halves, reduces the number of fasteners needed to assemble the block, and makes the overall assembly stiffer — there is no longer a seam between the top and bottom sections that can flex under belt tension.
+
+| File | Qty | Description |
+|---|---|---|
+| `z_bearing_block_v8.stl` | 4 | Unified Z bearing block (one per Z rail carriage) |
+| `z_belt_clamp.stl` | 4 | Belt clamp that locks the Z belt end into the bearing block |
+
+### Z belt clamp
+
+The `z_belt_clamp.stl` holds the looped end of the Z belt against the bearing block body. It is retained by two M3 screws and cinches the belt in place so it cannot slip under gantry load. Print 4 — one per corner.
+
+## Front idler
+
+The front idlers redirect the CoreXY A and B drive belts around the front-left and front-right corners of the gantry. Each front idler is split into a top and bottom piece for printability.
+
+| File | Qty | Position |
+|---|---|---|
+| `front_idler_top_a.stl` | 1 | Front-left idler, upper body |
+| `front_idler_top_b.stl` | 1 | Front-right idler, upper body |
+| `front_idler_bottom_a_1.stl` | 1 | Front-left idler, lower body |
+| `front_idler_bottom_b_1.stl` | 1 | Front-right idler, lower body |
+
+<Note>
+  The `_1` suffix on the bottom parts indicates a single-piece lower body. Earlier design revisions split the bottom into multiple pieces; the current version consolidates to one piece per side.
+</Note>
+
+The top and bottom halves of each front idler bolt together around the idler pulley stack. The assembled idler then mounts to the front 4040 gantry extrusion using T-nuts.
+
+## Assembly notes
+
+<Steps>
+  <Step title="Prepare the bearing block">
+    Insert the MGN12 carriage interface screws (M3 × 8 SHCS) before mounting the block to the carriage. The screw holes are accessible from the back of the block.
+  </Step>
+  <Step title="Route and clamp the Z belt">
+    Loop the Z belt end through the slot in the bearing block body, then capture it with `z_belt_clamp.stl`. Tighten the two M3 clamp screws evenly to avoid canting the clamp.
+  </Step>
+  <Step title="Assemble the front idler">
+    Stack the idler pulleys (2× 625 bearings with a washer between them) and sandwich them between `front_idler_top_a/b` and `front_idler_bottom_a_1/b_1`. Secure with the through-bolt before mounting to the gantry.
+  </Step>
+</Steps>
+
+## Source files
+
+| Part | Source file |
+|---|---|
+| Z bearing block | `Z Bearing Block v8.f3d` |
+| Front idler bottom | `Front Idler Bottom v11.f3z` |

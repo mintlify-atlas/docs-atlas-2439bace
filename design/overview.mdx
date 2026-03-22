@@ -1,0 +1,107 @@
+---
+title: "Design overview"
+description: "How the Voron Tower Fusion 360 design is structured, what files are included, and what you can customize."
+---
+
+Voron Tower is a fully parametric Fusion 360 design. Every structural dimension — build volume, frame size, gantry offsets, caster height — is driven by a central parameter table. You change one value and the entire assembly updates.
+
+The main assembly file is too large for GitHub and is hosted on Google Drive. All individual component files are in the repository.
+
+<Note>
+  [Download the main Fusion 360 assembly](https://drive.google.com/file/d/1ePI7Y9nos1gBQOqrRFIDSbPcuf1UqJJw/view?usp=sharing) from Google Drive. This file contains the full printer with all parameters.
+</Note>
+
+## Opening the files
+
+<Steps>
+  <Step title="Download Fusion 360">
+    You need [Autodesk Fusion 360](https://www.autodesk.com/products/fusion-360/overview) installed. A free personal-use license is available.
+  </Step>
+  <Step title="Download the main assembly">
+    Download the assembly from the Google Drive link above. The file is an `.f3d` archive containing the full parametric model.
+  </Step>
+  <Step title="Open the file">
+    In Fusion 360, go to **File → Open** and select the downloaded file. The assembly will load with all parameters intact.
+  </Step>
+  <Step title="Access the parameter table">
+    Go to **Modify → Change Parameters** to open the parameter table. All build dimensions, offsets, and gantry sizes are listed there.
+  </Step>
+</Steps>
+
+## Fusion 360 component files
+
+The repository includes individual Fusion 360 source files for every modified printed part. These are the files you need if you want to adapt a specific component rather than the whole assembly.
+
+<AccordionGroup>
+  <Accordion title="Motion system">
+    | File | Description |
+    |---|---|
+    | `a_b_drives.f3d` | A/B motor drive mounts adapted for 4040 gantry extrusions |
+    | `Front Idler Bottom v11.f3z` | Front idler bottom — geometry updated for 4040 profile |
+    | `z belt driver for 4040 v13.f3d` | Z belt drive block redesigned for 4040 frame mounting |
+    | `Z Bearing Block v8.f3d` | Unified Z bearing block (top and bottom merged into one part) |
+    | `Z Idler 4040 v24.f3z` | Z idler pulley block, repositioned for MGN12 rail and 4040 frame |
+    | `z chain lower mount v1.f3d` | Lower Z drag chain mount, repositioned for new frame geometry |
+  </Accordion>
+  <Accordion title="Enclosure and panels">
+    | File | Description |
+    |---|---|
+    | `Door Handle v5.f3d` | External door handle sized for 4040 extrusion |
+    | `Door Hinge 4040 v8.f3d` | Door hinge designed to clip onto a 4040 extrusion |
+    | `Door Latch Magnet v4.f3d` | Magnetic door latch — keeps the front door closed |
+    | `Panel Clip v3.f3d` | Panel retention clips for 4040 extrusions (corners and mid-span) |
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+  Files with the `.f3z` extension are Fusion 360 archive files (compressed). They open identically to `.f3d` files in Fusion 360.
+</Info>
+
+## What you can customize
+
+The parametric design lets you adjust:
+
+<CardGroup cols={2}>
+  <Card title="Build volume" icon="cube">
+    Adjust `build_x_offset`, `build_y_offset`, and `build_z_offset` to change how much usable print area you get inside the frame. The recommended starting point is 350×350mm.
+  </Card>
+  <Card title="Frame dimensions" icon="arrows-maximize">
+    `full_height`, `full_width`, and `full_depth` control the outer dimensions of the frame. These update all dependent cuts automatically.
+  </Card>
+  <Card title="Gantry positions" icon="move">
+    `gantry_x_front`, `gantry_x_back`, and `gantry_y` fine-tune the gantry extrusion positions. Keep adjustments within ±3mm of the defaults.
+  </Card>
+  <Card title="Adjustable feet" icon="arrow-down-to-line">
+    `caster_height` sets the height of the adjustable feet (casters), so the total printer height accounts for leveling feet correctly.
+  </Card>
+</CardGroup>
+
+## Optional features
+
+### Box enclosure
+
+The design includes a full box enclosure option with doors. The enclosure uses:
+- **Door hinges** (`Door Hinge 4040 v8.f3d`) — clip directly onto the 4040 extrusion, no hardware required for the hinge body
+- **Door handles** (`Door Handle v5.f3d`) — ergonomic handles scaled for the larger frame
+- **Magnetic door latch** (`Door Latch Magnet v4.f3d`) — keeps doors reliably closed during printing
+- **Panel clips** (`Panel Clip v3.f3d`) — retain side and top panels without screws
+
+### Adjustable feet
+
+The design supports caster-style adjustable feet. The `caster_height` parameter in Fusion 360 accounts for the foot height in all vertical dimension calculations, so the frame extrusion lengths come out correct regardless of which feet you use.
+
+<Tip>
+  If you are not using adjustable feet, set `caster_height` to 0 in the parameter table.
+</Tip>
+
+## What you still need from stock Voron 2.4
+
+Voron Tower only modifies the parts that interface with the 4040 frame. All of the following are reused unchanged from the standard Voron 2.4 R2:
+
+- Toolhead (any Voron-compatible toolhead)
+- Gantry motion components (belts, pulleys, bearings)
+- Electronics, wiring, and controller
+- Heated bed and bed leveling hardware
+- Extruder and hotend
+
+See the [build hardware list](/build/hardware-list) for a complete bill of materials covering the 350×350mm build.

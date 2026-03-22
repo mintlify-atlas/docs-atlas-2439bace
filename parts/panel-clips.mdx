@@ -1,0 +1,45 @@
+---
+title: "Panel clips"
+description: "Corner and midspan clips for retaining acrylic or polycarbonate enclosure panels on 4040 extrusion."
+---
+
+Panel clips hold the enclosure side, top, and rear panels in place on the 4040 frame. Two clip variants cover the full perimeter of each panel: corner clips for the 90° junctions at the frame corners, and midspan clips for the straight extrusion runs between corners.
+
+## Parts
+
+| File | Qty per panel | Description |
+|---|---|---|
+| `corner_clip_4040.stl` | 4 | Corner panel clip |
+| `midspan_clip_4040.stl` | varies | Midspan panel clip |
+
+Both clip types snap onto the 4040 extrusion T-slot without tools — no T-nuts or screws required. The panel is captured between the clip body and the extrusion face.
+
+<Note>
+  The number of midspan clips per panel depends on panel size. For a 350 × 350 mm build, 2 midspan clips per long edge is typical. For a 500 × 500 mm build, use 3 per long edge to prevent panel flex at the center.
+</Note>
+
+## Corner clip
+
+The `corner_clip_4040.stl` wraps around the 90° internal corner where two 4040 extrusions meet. It captures the panel edge at the corner and holds it flush against the frame face. The clip geometry matches the 40 mm slot position on 4040 profile — it will not fit 2020 extrusion.
+
+One corner clip is needed at each corner of the panel perimeter. For a rectangular panel with four corners, print 4 corner clips.
+
+## Midspan clip
+
+The `midspan_clip_4040.stl` clips onto the middle of a straight extrusion run, capturing the panel edge between two corner clips. It snaps into the T-slot groove on the 4040 extrusion and can be repositioned without tools by pressing the retention tab and sliding the clip.
+
+<Tip>
+  Space midspan clips evenly between the corner clips. For panels larger than 300 mm on a side, at least one midspan clip per edge prevents the panel from flexing inward under chamber pressure.
+</Tip>
+
+## Panel material and thickness
+
+The clips are sized for panels up to **3 mm thick**. Both 3 mm cast acrylic and 3 mm polycarbonate fit correctly. If you are using thicker panels (4–5 mm), check the clip pocket depth in the Fusion 360 source file and adjust the `panel_thickness` parameter accordingly.
+
+<Warning>
+  Polycarbonate is strongly recommended over acrylic for the top and rear panels if the printer runs at elevated chamber temperatures (above 50 °C). Acrylic can craze or warp with prolonged heat exposure.
+</Warning>
+
+## Source file
+
+Fusion 360 source: `Panel Clip v3.f3d`

@@ -1,0 +1,161 @@
+---
+title: "Assembly guide"
+description: "Step-by-step instructions for assembling the Voron Tower modified components, covering the 4040 frame, Z axis, gantry, and enclosure."
+---
+
+This guide covers assembly of all parts that differ from the stock Voron 2.4 R2. For toolhead, electronics, wiring, and XY gantry carriage assembly, follow the [official Voron 2.4 R2 assembly manual](https://docs.vorondesign.com/build/mechanical/) alongside this guide.
+
+<Info>
+  A full build walkthrough video is available on YouTube: [Voron Tower Build Video](https://www.youtube.com/watch?v=f0kk1qKtl04). Watch it alongside this guide for visual reference on each assembly stage.
+</Info>
+
+<Warning>
+  This is a community modification. The 350×350mm build is the recommended and most tested configuration. The 500×500mm build retains the stock 2020 Z carriage and is less tested — proceed with additional caution if building at that scale.
+</Warning>
+
+## Before you begin
+
+- Download and print all modified STL files from the [parts overview](/parts/overview).
+- Review the [hardware list](/build/hardware-list) and confirm all parts are on hand.
+- Read the [modifications overview](/build/modifications) to understand how Voron Tower differs from stock before starting.
+- Use the Voron 2.4 R2 manual for all sections not covered here.
+
+## Assembly
+
+<Steps>
+
+  <Step title="Frame assembly">
+    The 4040 frame is assembled using the same general approach as the Voron 2.4 R2, but all structural members are 4040 series 10 extrusion.
+
+    1. Lay out all vertical and horizontal extrusions and verify lengths against the parameter table output.
+    2. Use M5 T-nuts (10mm slot) and M5×10 or M5×12 socket head screws throughout — standard 2020 M5 T-nuts will not fit.
+    3. Assemble the four vertical corner posts with the bottom horizontal extrusions first, then add the top frame.
+    4. Use a machinist square or the extrusion itself to confirm 90° joints before tightening. The extra mass of 4040 makes shimming easier but also harder to correct once tightened.
+    5. Install all internal cross-braces and mid-frame extrusions per the Fusion 360 model.
+
+    <Note>
+      Gantry extrusions must be cut to lengths ending in 0 or 5 mm. Do not cut to arbitrary lengths — the parametric model assumes rounded values. Safe adjustment is ±3mm from calculated values for `gantry_x_front`, `gantry_x_back`, and `gantry_y`.
+    </Note>
+  </Step>
+
+  <Step title="Z motor mount installation">
+    Parts used: `z_motor_mount_a`, `z_motor_mount_b`
+
+    1. Install heat-set inserts into all M3 boss holes on both motor mounts.
+    2. Mount the Z motors (NEMA17) onto the printed mounts using M3×16 screws.
+    3. Align each motor mount against the bottom frame extrusion. The 4040 bolt pattern positions the mount differently from the 2020 variant — verify against the CAD model.
+    4. Use M5 roll-in T-nuts in the 4040 extrusion slot and M5×10 screws to secure each mount.
+    5. Repeat for all four corners.
+
+    <Warning>
+      Do not overtighten the T-nut screws before tramming — you will need to adjust motor mount positions during belt tensioning.
+    </Warning>
+  </Step>
+
+  <Step title="Z belt driver installation">
+    Parts used: `z_belt_driver_a_1`, `z_belt_driver_a_2`, `z_belt_driver_b_1`, `z_belt_driver_b_2`, `belt_tensioner_a`, `belt_tensioner_b`
+
+    1. Press the GT2 20T pulley onto each Z motor shaft. The pulley face should be flush with the shaft end.
+    2. Assemble each two-piece belt driver (`_1` and `_2`) around the pulley, ensuring the belt path is clear and the tensioner pivot is oriented upward.
+    3. Install the belt tensioner arm (`belt_tensioner_a` or `belt_tensioner_b`) with an M3×20 screw through the pivot boss. Use an M3 hex nut in the retention slot.
+    4. Route the Z GT2 belt through the driver assembly. Leave belt length adjustment for after the Z idlers are installed.
+    5. Repeat for all four Z drive corners, matching `_a` and `_b` parts to their respective sides.
+  </Step>
+
+  <Step title="Z idler installation">
+    Parts used: `z_idler_4040_1_a`, `z_idler_4040_1_b`, `z_idler_4040_2_a`, `z_idler_4040_2_b`
+
+    The Z idlers mount in the top corners of the 4040 frame and redirect the Z belt from vertical to horizontal.
+
+    1. Install heat-set inserts into the idler bodies.
+    2. Press 625 bearings into the idler housings. Use a flat surface to press bearings in squarely.
+    3. Assemble each two-piece idler (`_1` + `_2`) around the 625 bearing stack. Secure with an M5×16 screw and M5 hex nut.
+    4. Slide M5 T-nuts into the top extrusion slots at each corner, then position the assembled idler and fasten with M5×10 screws.
+    5. Route the Z belt from the bottom drive, up the corner, over the idler pulley, and down to the bed carriage. Leave final tensioning until the bed is installed.
+  </Step>
+
+  <Step title="Z bearing block installation">
+    Parts used: `z_bearing_block_v8`, `z_belt_clamp`
+
+    <Note>
+      The `z_bearing_block_v8` replaces three separate stock Voron 2.4 parts with a single unified block. Install heat-set inserts into the block body before attaching to the rail carriage.
+    </Note>
+
+    1. Install heat-set inserts into all M3 boss holes on `z_bearing_block_v8`.
+    2. Attach the bearing block to the MGN12H carriage on the Z rail using M3×8 screws.
+    3. Route the Z belt through the belt channel in the bearing block and clamp it with `z_belt_clamp` using two M3×12 screws.
+    4. With the belt clamped, apply even tension by adjusting the motor mount position at the bottom, then tighten the T-nuts.
+    5. Repeat for both Z rails.
+  </Step>
+
+  <Step title="Front idler installation">
+    Parts used: `front_idler_top_a`, `front_idler_top_b`, `front_idler_bottom_a`, `front_idler_bottom_b`
+
+    The front idlers redirect the XY A/B drive belts and mount differently from stock due to the 4040 extrusion geometry.
+
+    1. Install heat-set inserts into the top and bottom idler bodies.
+    2. Press smooth F695 flanged bearings into the top idler stacks, and toothed GT2 idlers into the lower idler bodies.
+    3. Assemble the top idler onto the front gantry extrusion first, using M5 T-nuts and M5×10 screws. The `_a` and `_b` variants are mirrored — verify left/right orientation before fastening.
+    4. Attach the bottom idler below the top idler on the same extrusion. Ensure the belt path is collinear between upper and lower idler when viewed from the front.
+    5. Do not fully tighten until the A/B belts are routed.
+  </Step>
+
+  <Step title="A/B drive installation">
+    Parts used: `a_drive_1`, `a_drive_2`, `b_drive_1`, `b_drive_2`
+
+    1. Install heat-set inserts into both drive bodies.
+    2. Mount the A and B NEMA17 motors onto their respective two-piece drive assemblies.
+    3. Press GT2 20T pulleys onto the motor shafts.
+    4. Secure each assembled drive to the rear gantry extrusion using M5 T-nuts and M5×12 screws. The drive position sets belt geometry — align carefully using the CAD model.
+    5. Route A/B belts from the drive pulleys, forward to the front idlers, and down to the toolhead X carriage.
+    6. Apply tension by sliding each drive rearward, then tighten the mounting screws.
+  </Step>
+
+  <Step title="Z chain lower mount installation">
+    Parts used: `z_chain_lower_mount`
+
+    1. Install heat-set inserts into the mount body.
+    2. Attach the mount to the left side panel extrusion using M5 T-nuts and M5×10 screws, at the height specified in the CAD model.
+    3. Connect the lower end of the Z drag chain to the mount. The chain should have enough slack to travel the full Z range without tension.
+  </Step>
+
+  <Step title="Panel clip installation">
+    Parts used: `corner_clip_4040`, `midspan_clip_4040`
+
+    Panel clips secure the enclosure panels to the 4040 frame. They are designed for the 10mm slot profile.
+
+    1. Slide M3 roll-in T-nuts into the outer-facing slots of all frame extrusions that will hold panels.
+    2. Snap `corner_clip_4040` pieces onto the corner joints first — one per visible corner edge per panel.
+    3. Install `midspan_clip_4040` pieces along the middle of each panel edge. Spacing depends on panel rigidity; start with one clip per 150–200mm of edge length.
+    4. Insert each panel (e.g., 3mm acrylic or polycarbonate) by angling it into the clips, then pressing the outer lip over the panel edge.
+    5. Fasten each clip with M3×8 button-head screws into the T-nuts.
+  </Step>
+
+  <Step title="Door assembly">
+    Parts used: `door_hinge_4040`, `door_handle_a`, `door_handle_b`, `door_latch_magnet_4040`
+
+    1. Install heat-set inserts into the hinge bodies and latch body.
+    2. Attach `door_hinge_4040` hinges to the left-side door panel extrusion using M5 T-nuts. Two hinges per door panel is standard.
+    3. Mount the door panel onto the hinges and verify it swings freely without binding.
+    4. Assemble the door handle from `door_handle_a` and `door_handle_b`. The two-piece design clamps around a door panel edge — fasten with M3×16 screws.
+    5. Install `door_latch_magnet_4040` on the door and its matching counterpart on the frame. Insert 6×3mm magnets (press fit) into both latch halves. Verify the door closes flush and holds securely.
+
+    <Tip>
+      If the door does not close flush, adjust the hinge T-nut position slightly inward or outward before fully tightening.
+    </Tip>
+  </Step>
+
+</Steps>
+
+## Continuing with stock Voron 2.4 R2 steps
+
+Once the modified components are installed, continue with the standard Voron 2.4 R2 manual for:
+
+- Toolhead and extruder assembly
+- Electronics mounting and wiring
+- Bed leveling and traming
+- Software setup (Klipper, Mainsail/Fluidd)
+
+<Note>
+  The Voron community maintains an excellent set of resources at [docs.vorondesign.com](https://docs.vorondesign.com) for all post-mechanical steps.
+</Note>
